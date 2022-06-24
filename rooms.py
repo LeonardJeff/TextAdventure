@@ -1,15 +1,18 @@
-from room import Room
-from npcs import *
+from room import *
 from items import *
-r1 = Room(1, "A Construction Site")
-r2 = Room(2, "Grassy Field")
-r3 = Room(3, "Deep woods")
-r4 = Room(4, "Grassy Outskirts")
+from quests import *
+from scenerys import *
+r1 = Room(1, "at the Construction Site", )
+r2 = Room(2, "in a Grassy Field", )
+r3 = Room(3, "in the Deep woods", 
+access = 0,
+lockdesc = "You probably should listen to your boss and get those planks from the pile over there to the south.", 
+lockreq = firstquest, 
+firstenter = "As you enter into the deep woods, you notice multiple workers who seem to have been knocked out.")
+r4 = Room(4, "in the Grassy Outskirts", )
+r5 = Room(5, "in the Grassy Outskirts" )
+r6 = Room(6, "at Lily's house", )
 
-r1.setNeighbors(nroom=r3, sroom=r2) #north room needs to be blocked off at first
-r2.setNeighbors(nroom=r1)
-r3.setNeighbors(sroom=r1)
-r4.setNeighbors(sroom=r2)   #unfinished
-
-r1.addnpc(Frank)
-r1.additem(woodenplank, woodenplank)
+#Room 1 (Construction Site Flour Mill)
+#Room 2 (Grassy Field next to dirt road)
+#Room 3 (Deep Woods)

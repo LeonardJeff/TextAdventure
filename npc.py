@@ -1,8 +1,17 @@
 class NPC:
-    def __init__(self, name, dialogue, inventory=None):
+    def __init__(self, name, examine, dialogue=[], greeting="greetings, i am error", inventory=None, questcompleted =None, questunfinished=None, quest1=None, quest2=None):
 
         if inventory is None:
             inventory = []
         self.inventory = inventory       
-        self.dialogue = dialogue
+        self.greeting = greeting
         self.name = name
+        self.examine = examine
+        self.quests = []
+        self.questcompleted = questcompleted
+        self.questunfinished = questunfinished
+        self.quest1 = quest1
+        self.quest2 = quest2
+        self.dialogue = dialogue
+
+    
