@@ -16,27 +16,29 @@ print("Enter your name:")
 name = input()
 if name == "":
     name = "Gabe"
-    player.setname("Gabe")
+    player.setName("Gabe")
     pushtext("... So you're the silent type?","???: ")
     print("The man looks down at his clipboard.")
     pushtext("...well bud, the only name I don't recognize on here is Gabe. So you must be Gabe.","???")
-player.setname(name)
+player.setName(name)
 
 from rooms import *
 from npcs import *
 from quests import *
 from quest import *
 from globalvars import *
+import combat
 r1.addnpc(Frank1)
 r2.addnpc(Lily1)
 r2.addnpc(Peggy)
 
 r1.additem(axe)
+r1.additem(woodenplanks)
 r2.additem(woodenplanks)
 r2.additem(woodenplanks)
 r3.additem(axe)
 
-r3.addnpc(Man1)
+r3.addnpc(Man1) #unconcious man
 
 r2.addscenery(firstrock)  
 
@@ -54,13 +56,15 @@ firstquest.addquest(Frank1, player)
 while firstquest.complete == 0:
     player.location.displayroom(player)
    
-pushtext("Ahhhhhh!!!!", speed=0.035)
-#wait 1 seconds
-pushtext("\nYou hear screams from the windmill north of you.", speed=0.035)
-#wait 1 second
+pushtext("Ahhhhhh!!!!") #, speed=0.035, cutscenemode = True
+time.sleep(1)
+pushtext("\nYou hear screams from the windmill north of you.") #, speed=0.035, cutscenemode = True
+time.sleep(1)
+from monsters import goblin
+Combattest = combat.Combat(player, goblin)
+Combattest.startcombat(player,goblin)
 while player.health > 0:
-    #if combat == True:
-        player.location.displayroom(player) 
+    Combattest.displaycombat(player,goblin)
     
 
 #while p.health>0: ##& combat == False:

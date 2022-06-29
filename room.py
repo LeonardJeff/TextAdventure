@@ -20,7 +20,7 @@ def changerooms(player, room1, room2):
 			pushtext(room2.lockdesc)
 
 def talkto(player, npc):
-	pushtext(npc.greeting, npc.name)
+	pushtext(npc.greeting, npc.name, speed = 0.04, cutscenemode = True)
 	if len(npc.quests) == 0:
 		for text in npc.dialogue:
 					pushtext(text, npc.name)				
@@ -120,9 +120,7 @@ class Room:
 				if self.getroomfordirection(parts[1]) == None:
 					pushtext("Invalid input, please retype your command")
 					return
-			changerooms(player, self, self.getroomfordirection(parts[1]))
-
-		
+			changerooms(player, self, self.getroomfordirection(parts[1]))		
 		if playerinput.startswith("talk"): 
 			parts = playerinput.split(" ")
 			if len(parts) < 3:
@@ -140,7 +138,6 @@ class Room:
 					continue
 					
 			pushtext("It seems noone here goes by the name " + (inputname))     
-		
 		if playerinput.startswith("examine"):
 			parts = playerinput.split(" ")			
 			inputname = "".join(parts[1:]).lower()
@@ -173,25 +170,27 @@ class Room:
 				else:
 					continue
 		
-			print("there is no " + inputname)
-			return
-		
+			print("there is no " + inputname + ".")
+			return	
 		if playerinput.startswith("look"):
-			pushtext("You take a look around the area", speed = 0.05, cutscenemode = True, cutscenemodeendspeed = 0.1) 
-			pushtext("...", speed = 0.6, cutscenemode = True) 
+			counter = False
+			pushtext("You take a look around the area", speed = 0.04, cutscenemode = True, cutscenemodeendspeed = 0.1) 
+			pushtext("...", speed = 0.5, cutscenemode = True) 
 			if self.items:
-				pushtext("\nand you're able to see:", cutscenemode = True)
+				counter = True
+				pushtext("\nand you're able to see:", speed = 0.04, cutscenemode = True)
 				for item in self.items:                
-					pushtext(item.name.capitalize(), cutscenemode = True)
+					pushtext("\n" + item.name.capitalize(), cutscenemode = True)
+					time.sleep(0.3)
 				input("\nPress enter to continue")
 				return
 			if self.scenerys:
+				counter = True
 				for item in self.scenerys:
 					print(item.name.capitalize())
 				input("Press enter to continue")                              
-			else:
+			if counter == False:
 				pushtext("and find nothing...")
-		
 		if playerinput.startswith("pick"):
 			parts = playerinput.split(" ")
 			if len(parts) > 4:
@@ -210,12 +209,11 @@ class Room:
 	def parse_examine(argument):
 		switcher = {
 			0:"item",
-			1:"npc"
-			
+			1:"npc",
+			2:"scenery"
 		}
 		return switcher.get(argument, 0)
 				  
-   
 	def getroomfordirection(self, direction):
 		return self.neighbors.get(direction)
 

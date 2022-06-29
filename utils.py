@@ -17,20 +17,22 @@ def compareblename(name:str):
 
    
 def pushtext(text, speaker = None, speed = 0, cutscenemode = False, cutscenemodeendspeed = 1):
+    if text == None:
+        return
     if cutscenemode == True:
         if speaker == None:
             for char in text:
                 sys.stdout.write(char)
                 sys.stdout.flush()
                 time.sleep(speed)
-            time.sleep(1)
+            time.sleep(0.3)
         if speaker:
             sys.stdout.write(speaker + ": ")
             for char in text:
                 sys.stdout.write(char)
                 sys.stdout.flush()
                 time.sleep(speed)
-            time.sleep(1)
+            time.sleep(0.5)
                 
     if cutscenemode == False:
         if speaker == None:
@@ -46,8 +48,6 @@ def pushtext(text, speaker = None, speed = 0, cutscenemode = False, cutscenemode
                 sys.stdout.flush()
                 time.sleep(speed)      
             input()
-    if text == None:
-        return
     else:
         return
 
