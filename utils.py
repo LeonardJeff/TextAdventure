@@ -19,7 +19,7 @@ def compareblename(name:str):
 def pushtext(text, speaker = None, speed = 0, cutscenemode = False, cutscenemodeendspeed = 1):
     if text == None:
         return
-    if cutscenemode == True:
+    if cutscenemode == True:    #cutscene mode is for auto text
         if speaker == None:
             for char in text:
                 sys.stdout.write(char)

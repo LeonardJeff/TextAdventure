@@ -15,9 +15,9 @@ questcompleted = "Now go get me that last wooden plank i asked f-"
 )
 
 Lily1 = NPC("Lily", 
-greeting = f"Hey {player.name}!",
+greeting = None,
 examine = "Lily turns away to avoid your awkward attempt to analyze her.", 
-dialogue= (("Did you know you can examine anything just by thinking to yourself \"examine ____\"", "Try it on that rock over there!"))
+dialogue= ((f"Hey {player.name}!","Did you know you can examine anything just by thinking to yourself \"examine ____\"", "Try it on that rock over there!"))
 )
 
 Peggy = NPC("Peggy", 

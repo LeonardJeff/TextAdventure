@@ -1,18 +1,23 @@
-from item import *
-from npcs import *
+import item
+import npcs
 from utils import *
-from quest import *
 import os
 
 def changerooms(player, room1, room2):
 	if room2.access == None:        
-		player.location = room2		
+		player.location = room2
+		if room2.entered == False:
+			os.system('cls' if os.name == 'nt' else 'clear')
+			pushtext(room2.firstenter,)		# speed = 0.04
+			room2.entered = True
 	else: 
 		if room2.lockreq.complete == 1:
 			player.location = room2
 			room2.lockreq.complete = 2
-			pushtext(room2.firstenter)
-			input
+			room2.entered = True
+			os.system('cls' if os.name == 'nt' else 'clear')
+			pushtext(room2.firstenter,) 	# speed = 0.04
+
 		elif room2.lockreq.complete == 2:
 			player.location = room2
 		else:
@@ -20,7 +25,7 @@ def changerooms(player, room1, room2):
 			pushtext(room2.lockdesc)
 
 def talkto(player, npc):
-	pushtext(npc.greeting, npc.name, speed = 0.04, cutscenemode = True)
+	pushtext(npc.greeting, npc.name, speed = 0.04,)
 	if len(npc.quests) == 0:
 		for text in npc.dialogue:
 					pushtext(text, npc.name)				
@@ -48,18 +53,18 @@ def talkto(player, npc):
 				
 					
 class Room:
-	def __init__(self, roomid, desc, access = None, lockdesc = None, lockreq = None, firstenter = None, entered = None):
+	def __init__(self, roomid, desc, access = None, lockdesc = None, lockreq = None, firstenter = None, entered = False):
 		self.roomid = roomid
 		self.desc = desc
 		self.neighbors = {"north":None,"east":None,"south":None,"west":None}
 		self.npcs = []
 		self.items = [] 
 		self.scenerys = []
-		self.access = access
-		self.lockdesc = lockdesc
-		self.lockreq = lockreq
-		self.firstenter = firstenter
-		self.entered = entered
+		self.access = access			#determines whether the player can enter the room or not.
+		self.lockdesc = lockdesc		#what to tell player if the room is locked.
+		self.lockreq = lockreq 			#lock requirement, takes in quest.
+		self.firstenter = firstenter	#first enter text
+		self.entered = entered			#tells if the room has been entered yet.
 
 	def setNeighbors(self, nroom=None, eroom=None, sroom=None, wroom=None):
 		self.neighbors = {
@@ -147,7 +152,8 @@ class Room:
 				if compareblename(item.name).startswith(comparename):                       
 					x = item.name
 					thisitem = x.capitalize()
-					pushtext("You examined the " + thisitem + ". " + item.examine)
+					pushtext("You examined the " + thisitem + ".")
+					pushtext(item.examine)
 					return
 				else:
 					continue                
@@ -155,8 +161,7 @@ class Room:
 			for npc in self.npcs:
 				if compareblename(npc.name).startswith(comparename): 
 					pushtext("You examine " + npc.name + ". ")
-					for text in npc.examine:
-						pushtext(text)					
+					pushtext(npc.examine)					
 					return       
 				else:
 					continue			
@@ -176,21 +181,18 @@ class Room:
 			counter = False
 			pushtext("You take a look around the area", speed = 0.04, cutscenemode = True, cutscenemodeendspeed = 0.1) 
 			pushtext("...", speed = 0.5, cutscenemode = True) 
-			if self.items:
+			if self.items or self.scenerys:
 				counter = True
 				pushtext("\nand you're able to see:", speed = 0.04, cutscenemode = True)
 				for item in self.items:                
 					pushtext("\n" + item.name.capitalize(), cutscenemode = True)
-					time.sleep(0.3)
-				input("\nPress enter to continue")
-				return
-			if self.scenerys:
-				counter = True
-				for item in self.scenerys:
-					print(item.name.capitalize())
-				input("Press enter to continue")                              
+					time.sleep(0.3)				
+				for scenery in self.scenerys:
+					pushtext("\n" + scenery.name.capitalize(), cutscenemode = True)
+					time.sleep(0.3)	                              
 			if counter == False:
 				pushtext("and find nothing...")
+			input("\nPress enter to continue")
 		if playerinput.startswith("pick"):
 			parts = playerinput.split(" ")
 			if len(parts) > 4:
