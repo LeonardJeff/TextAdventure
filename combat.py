@@ -6,6 +6,12 @@ from enum import Enum
 import time
 import quests
 
+class CombatOption(Enum):
+            attack = "1"
+            items = "2"
+            examine = "3"
+            run = "4"
+            magic = "5"
 class Combat:
     def __init__(self,player,enemy):
         self.player = player
@@ -13,7 +19,10 @@ class Combat:
         self.turn = 0
         self.turndesc = ["last","3rd","2nd","Mostrecent"]               
         self.OptionNumber = {}
-        
+
+
+
+
     def startcombat(self,player,enemy):
         os.system('cls' if os.name == 'nt' else 'clear')
         #firstpart
@@ -37,13 +46,14 @@ class Combat:
             print("| [2]    Items                 |")
             print("| [3]    Examine               |")
             print("| [4]    Run(%)                |")
-        print(">-----------------------------------------------<")
+            print(">-----------------------------------------------<")
         if enemy.dialogue:
             time.sleep(0.6)
             pushtext(enemy.dialogue, cutscenemode=True, speed = 0.04, speaker=enemy.name)
             self.turndesc.append(f"{enemy.name}: {enemy.dialogue}")
             input()
-        
+
+           
     def displaycombat(self, player, enemy):
         os.system('cls' if os.name == 'nt' else 'clear')
         print(str(player.health) + "				" + str(enemy.health))
@@ -66,16 +76,7 @@ class Combat:
             print("| [3]    Examine               |")
             print("| [4]    Run(%)                |")
             print(">-----------------------------------------------<")
-        playerinput = getLowerInput()
-        
-        class CombatOption(Enum):
-            attack = "1"
-            items = "2"
-            examine = "3"
-            run = "4"
-            magic = "5"
-        
-    
+        playerinput = getLowerInput()           
         OptionNumber ={
             "1" : CombatOption.attack,
             "2" : CombatOption.items, 
@@ -83,25 +84,33 @@ class Combat:
             "4" : CombatOption.run
             }
     
-        if quests.firstquest.complete == True:
-            OptionNumber["1"] = CombatOption.attack
-            OptionNumber["2"] = CombatOption.magic, 
-            OptionNumber["3"] = CombatOption.items, 
-            OptionNumber["4"] = CombatOption.examine,
-            OptionNumber["5"] = CombatOption.run,     
-        
+       
+        OptionNumber.update({"1" : CombatOption.attack})
+        OptionNumber.update({"2" : CombatOption.magic})
+        OptionNumber.update({"3" : CombatOption.items})
+        OptionNumber.update({"4" : CombatOption.examine})
+        OptionNumber.update({"5" : CombatOption.run})
+        if playerinput in OptionNumber:
+            print ("num found in optionnumber")
+        if playerinput not in OptionNumber:
+            print("num NOT found in optionnumber")
+            input()
         if OptionNumber.get(playerinput) == CombatOption.attack:
-                print("you choose to attack")
-                input()
+            print("you choose to attack")
+            input()
 
-        if OptionNumber.get(playerinput) == CombatOption.magic: # = 5
-                print("you look perform magic")
-                input()
+        if OptionNumber.get(playerinput) == CombatOption.magic:
+            print("you perform a magic attack")
+            input()
             
         if OptionNumber.get(playerinput) == CombatOption.examine:
-                print("you examine the thing")
-                input()
+            print("you examine the thing")
+            input()
                 
         if OptionNumber.get(playerinput) == CombatOption.run:
-                print("you run")
-                input()
+            print("you run")
+            input()
+        
+        if OptionNumber.get(playerinput) == CombatOption.items:
+            print("you examine")
+            input()
