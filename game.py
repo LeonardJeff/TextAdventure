@@ -53,15 +53,14 @@ while quests.firstquest.complete == 0:
     players.player.location.displayroom(players.player)
    
 pushtext("Ahhhhhh!!!!") #, speed=0.035, cutscenemode = True
-time.sleep(1)
+#time.sleep(1)
 pushtext("\nYou hear screams from the windmill north of you.") #, speed=0.035, cutscenemode = True
-time.sleep(1)
+#time.sleep(1)
 import monsters
 
 Combattest = combat.Combat(players.player, monsters.goblin)
 Combattest.startcombat(players.player,monsters.goblin)
-while players.player.health > 0:
-    Combattest.displaycombat(players.player,monsters.goblin)
+Combattest.displaycombat(players.player,monsters.goblin)
     
 
 #while p.health>0: ##& combat == False:

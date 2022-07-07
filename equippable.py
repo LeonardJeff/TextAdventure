@@ -9,7 +9,8 @@ class ArmorType(Enum):
 
 class Armor(item.Item):
     
-    def __init__ (self, name, examine, armortype, armorrating):
+    def __init__ (self, name, examine, armortype, armorrating, tooltip=None):
         super().__init__(self, name, examine)
         self.armortype = armortype
         self.armorrating = armorrating
+        self.tooltip = tooltip

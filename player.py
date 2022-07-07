@@ -9,10 +9,13 @@ class Player:
         self.name = name
 
         #for combat
-        self.health = 100
+        #player attack will range from 0-20
+        #player health will range from 0-99
+        #player speed will range from 0-20
+        self.health = 10
         self.attack = 1
         self.magicattack = 1
-        self.defense = 0
+        self.speed = 1
 
         #for equip
         self.headslot = None
