@@ -8,13 +8,13 @@ class Player:
         self.quests = []
         self.name = name
 
-        #for combat?
+        #for combat
         self.health = 100
         self.attack = 1
         self.magicattack = 1
         self.defense = 0
 
-        #for equip?
+        #for equip
         self.headslot = None
         self.bodyslot = None
         self.bootslot = None

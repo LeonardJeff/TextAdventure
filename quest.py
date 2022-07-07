@@ -1,11 +1,11 @@
 class Quest:
-    def __init__(self, item, goalamount, name, hint, reward = None ):
+    def __init__(self, item, goalamount, name, hint, reward = None, complete = False ):
         self.item = item
         self.goalamount = goalamount
         self.name = name
         self.hint = hint
         self.progress = 0
-        self.complete = 0
+        self.complete = complete
         self.reward = reward
         
     

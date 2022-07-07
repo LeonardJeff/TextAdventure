@@ -43,7 +43,7 @@ def talkto(player, npc):
 						pushtext(npc.quest2, npc.name)
 						pushtext(npc.questunfinished + (questunf(quest), npc.name))					
 					if quest.progress == quest.goalamount:
-						quest.complete = 1
+						quest.complete = True
 						pushtext(npc.questcompleted, npc.name)
 						npc.quests.remove(quest)
 						player.quests.remove(quest)

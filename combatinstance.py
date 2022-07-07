@@ -1,2 +1,0 @@
-from combat import startcombat
-

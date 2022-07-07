@@ -1,9 +1,9 @@
 class Monster:
-    def __init__(self, name, examine, dialogue=[], inventory=None, attack=1, health=5 ):
+    def __init__(self, name, examine, dialogue=[], drops=None, attack=1, health=5 ):
 
-        if inventory is None:
-            inventory = []
-        self.inventory = inventory       
+        if drops is None:
+            drops = []
+        self.drops = drops       
         
         self.name = name
         self.examine = examine

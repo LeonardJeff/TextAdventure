@@ -43,11 +43,6 @@ rooms.r3.addnpc(npcs.Man1) #unconcious man
 
 rooms.r2.addscenery(scenerys.firstrock) 
 
-rooms.r1.setNeighbors(nroom=rooms.r3, sroom=rooms.r2)
-rooms.r2.setNeighbors(nroom=rooms.r1)
-rooms.r3.setNeighbors(sroom=rooms.r1)
-rooms.r4.setNeighbors(nroom=rooms.r5)
-
 players.player.location = (rooms.r1)
 
 pushtext(f"{players.player.name}? {players.player.name}... I think I've heard my daughter mention your name before.","???")
@@ -62,6 +57,7 @@ time.sleep(1)
 pushtext("\nYou hear screams from the windmill north of you.") #, speed=0.035, cutscenemode = True
 time.sleep(1)
 import monsters
+
 Combattest = combat.Combat(players.player, monsters.goblin)
 Combattest.startcombat(players.player,monsters.goblin)
 while players.player.health > 0:
