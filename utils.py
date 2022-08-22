@@ -16,7 +16,16 @@ def compareblename(name:str):
 
 
    
-def pushtext(text, speaker = None, speed = 0, cutscenemode = False, cutscenemodeendspeed = 1):
+def pushtext(text, speaker = None, speed = 0, cutscenemode = False):
+    """
+    This function processes strings to make the text "animate" and appear slowly, text speed can be edited by editing speed
+    cutscenemode makes text automatically advance for you.
+    speed:
+    0.015 = excited crazy
+    0.02 = mad at you
+    0.03 = default speed
+    0.07 = agonizingly slow
+    """
     if text == None:
         return
     if cutscenemode == True:    #cutscene mode is for auto text
@@ -50,15 +59,6 @@ def pushtext(text, speaker = None, speed = 0, cutscenemode = False, cutscenemode
             input()
     else:
         return
-
-
-
-def printmultilines(string):
-    for char in range(len(string)):
-        print(string[char], end="")
-        time.sleep(.1/10)
-        #for a noticable reduction in output speed
-    print("")
 
 def questunf(quest):
         idk = str(quest.item)

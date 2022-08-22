@@ -179,7 +179,7 @@ class Room:
 			return	
 		if playerinput.startswith("look"):
 			counter = False
-			pushtext("You take a look around the area", speed = 0.04, cutscenemode = True, cutscenemodeendspeed = 0.1) 
+			pushtext("You take a look around the area", speed = 0.04, cutscenemode = True) 
 			pushtext("...", speed = 0.5, cutscenemode = True) 
 			if self.items or self.scenerys:
 				counter = True

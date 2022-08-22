@@ -66,7 +66,7 @@ examine="",
 attackbonus = 20,
 speedbonus = 3,
 armorbonus = 3,
-tooltip = ["+20 Attack", "+3 Speed", + "+3 Armor"])
+tooltip = ["+20 Attack","+3 Speed","+3 Armor"])
 
 aduriteGreatSword = Weapon(
 name ="adurite greatsword", 

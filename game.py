@@ -3,7 +3,6 @@ from os import system
 from fullscreen import *
 from utils import *
 
-
 system('mode con: cols=150 lines=100')
 maximize_console()
 
@@ -21,7 +20,7 @@ if name == "":
     pushtext("... So you're the silent type?","???: ")
     print("The man looks down at his clipboard.")
     pushtext("...well bud, the only name I don't recognize on here is Gabe. So you must be Gabe.","???")
-    players.player.setName(name)
+players.player.setName(name)
 
 import rooms
 import npcs
@@ -29,15 +28,16 @@ import quests
 import combat
 import scenerys
 import items
+import weapons
 rooms.r1.addnpc(npcs.Frank1)
 rooms.r2.addnpc(npcs.Lily1)
 rooms.r2.addnpc(npcs.Peggy)
 
-rooms.r1.additem(items.axe)
+rooms.r1.additem(weapons.axe)
 rooms.r1.additem(items.woodenplanks)
 rooms.r2.additem(items.woodenplanks)
 rooms.r2.additem(items.woodenplanks)
-rooms.r3.additem(items.axe)
+rooms.r3.additem(weapons.axe)
 
 rooms.r3.addnpc(npcs.Man1) #unconcious man
 
@@ -58,9 +58,11 @@ pushtext("\nYou hear screams from the windmill north of you.") #, speed=0.035, c
 #time.sleep(1)
 import monsters
 
-Combattest = combat.Combat(players.player, monsters.goblin)
-Combattest.startcombat(players.player,monsters.goblin)
-Combattest.displaycombat(players.player,monsters.goblin)
+Combattest = combat.Combat(players.player, monsters.firstgoblin)
+
+Combattest.startcombat()
+
+pushtext("You successfully concluded conflict")
     
 
 #while p.health>0: ##& combat == False:
