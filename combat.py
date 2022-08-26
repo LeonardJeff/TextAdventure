@@ -131,7 +131,7 @@ class Combat:
         if self.OptionNumber.get(playerinput) == CombatOption.attack:
             pushtext("you choose to attack")   
             playerdamage = Player.calcdamage(self.player, self.enemy.defense, self.enemy.speed)
-            enemydamage = combatbehavior.goblinbehavior(self.enemy, self.player)
+            enemydamage = combatbehavior.ai(self.enemy, self.player, self.turn)
             self.combatturnhandler(playerdamage,enemydamage)
             #self.enemy.health -= damage
             #if self.enemy.health <= 0 
@@ -143,7 +143,8 @@ class Combat:
             input()
 
         if self.OptionNumber.get(playerinput) == CombatOption.items:
-            print("You open your bag:")
+            pushtext("You open your bag:")
+            self.player.openinv()
             input()
             
         if self.OptionNumber.get(playerinput) == CombatOption.examine:
@@ -152,7 +153,12 @@ class Combat:
         #import pdb 
         #pdb.set_trace() 
         if self.OptionNumber.get(playerinput) == CombatOption.run:           
-            run = random.randint(0, 3)
+            bound = 0
+            if bound == 1: #If trapped in battle by the enemy, make it impossible to run
+                run = 4
+            else:
+                run = random.randint(0, 3)      
+            
             match run:
                 case 0:
                     pushtext("you make an attempt to run -"  )
@@ -162,6 +168,9 @@ class Combat:
                     pushtext("you attempt to run away from the fight -"  )
                 case 3:                   
                     pushtext("you attempt to flee -")
+                case 4:
+                    pushtext("Your enemy prevents you from escaping!")
+                    return
 
             runchance = random.randint(0,(max(self.enemy.level - self.player.level, 1)))
             match runchance:
@@ -189,66 +198,72 @@ class Combat:
    
     
     
-    def combatturnhandler (self, playeraction = None, enemyaction = None):
-        self.playeraction = playeraction
-        self.enemyaction = enemyaction
-        pushtext("Debug playerdamage, roll: " + str(playeraction))
-        pushtext("Debug enemydamage, roll: " + str(enemyaction))
+    def combatturnhandler (self, playerturn = None, enemyturn = None):
+        self.playerturn = playerturn
+        self.enemyturn = enemyturn
+        pushtext("Debug playerturn, roll: " + str(playerturn))
+        pushtext("Debug enemyturn, roll: " + str(enemyturn))
         
-        if self.player.speed >= self.enemy.speed:       
-            if playeraction[1] == 0:
+        if self.player.speed >= self.enemy.speed:  #if player is faster than enemy: player go first 
+            if playerturn[1] == 0:
                     pushtext("Your attack misses!")
-            if playeraction[1] == 10:
+            if playerturn[1] == 10:
                     pushtext("Critical strike!") 
-            pushtext("you do " + str(playeraction[0]) + " damage") 
-            self.enemy.health -= playeraction[0]
+            pushtext("you do " + str(playerturn[0]) + " damage") 
+            self.enemy.health -= playerturn[0]
 
-            if self.enemy.health >0:
-                if type(enemyaction[0]) == int:
-                    if enemyaction[1] == 0:
-                        pushtext("The enemy misses!")
-                    if enemyaction[1] == 10:
-                        pushtext("The enemy lands a critical strike!")                          
-                    pushtext("the enemy does " + str(enemyaction[0]) + " damage")
-                    self.player.health -= enemyaction[0]
-            
-                if type(enemyaction[0]) != int:
-                    pushtext(str(enemyaction[0]))
-                    if enemyaction[1] == 1:
-                        print(self.enemy.drops[0])
-                        self.enemy.drops[0].consume(self.enemy)
-                        pushtext("goblin hopefully consumed apple")
-                        del self.enemy.drops[0]
-                    if enemyaction[1] == 2:
-                        print("goblin rolled a 2")
+            if self.enemy.health >0:    #if enemy survives your attack
+                  
+                if enemyturn[0] == 1:   #uses item
+                    print(self.enemy.drops[0])
+                    self.enemy.drops[0].consume(self.enemy)
+                    pushtext(f"The {self.enemy.name} consumed its {self.enemy.drops[0]}.")
+                    del self.enemy.drops[0]
+                    self.turn +=1
+
+                if enemyturn[0] == 3:   #Text only
+                    for text in enemyturn[1:]:
+                        pushtext(text)
+                    self.turn +=1
+
+                if enemyturn[0] == 4:   #normal attack only
+                    if enemyturn[2] == 0:
+                        pushtext(f"The {self.enemy.name} misses!")
+                    if enemyturn[2] == 10:
+                        pushtext(f"The {self.enemy.name} lands a critical strike!")                          
+                    pushtext("the enemy does " + str(enemyturn[1]) + " damage")
+                    self.player.health -= enemyturn[1]
+                    self.turn +=1
             else:
                 pushtext("You defeated " + self.enemy.name + "!")
                 return
-        if self.enemy.speed > self.player.speed: 
-            if type(enemyaction[0]) == int:
-                if enemyaction[1] == 0:
-                    pushtext("The enemy misses!")
-                if enemyaction[1] == 10:
-                    pushtext("The enemy lands a critical strike!")                          
-                    pushtext("the enemy does " + str(enemyaction[0]) + " damage")
-                    self.player.health -= enemyaction[0]
-            
-                if type(enemyaction[0]) != int:
-                    print(str(enemyaction[0]))
-                    if enemyaction[1] == 1:
-                        print(self.enemy.drops[0])
-                        self.enemy.drops[0].consume(self.enemy)
-                        pushtext("goblin hopefully consumed apple")
-                        del self.enemy.drops[0]
-                    if enemyaction[1] == 2:
-                        print("goblin rolled a 2")
+        if self.enemy.speed > self.player.speed: #if enemy is faster: enemy go first
+            if enemyturn[0] == 1:   #uses item
+                print(self.enemy.drops[0])
+                self.enemy.drops[0].consume(self.enemy)
+                pushtext(f"The {self.enemy.name} consumed its {self.enemy.drops[0]}.")
+                del self.enemy.drops[0]
+
+            if enemyturn[0] == 3:   #Text only
+                for text in enemyturn[1:]:
+                    pushtext(text)
+
+            if enemyturn[0] == 4:   #normal attack only
+                if enemyturn[2] == 0:
+                    pushtext(f"The {self.enemy.name} misses!")
+                if enemyturn[2] == 10:
+                    pushtext(f"The {self.enemy.name} lands a critical strike!")                          
+                pushtext("the enemy does " + str(enemyturn[1]) + " damage")
+                self.player.health -= enemyturn[1]
+
             if self.player.health >0:
-                if playeraction[1] == 0:
+                if playerturn[1] == 0:
                     pushtext("Your attack misses!")
-                if playeraction[1] == 10:
+                if playerturn[1] == 10:
                     pushtext("Critical strike!") 
-                pushtext("you do " + str(playeraction[0]) + " damage") 
-                self.enemy.health -= playeraction[0]
+                pushtext("you do " + str(playerturn[0]) + " damage") 
+                self.enemy.health -= playerturn[0]
+                self.turn +=1
             else:
                 pushtext("You died")
                 return

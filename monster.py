@@ -1,5 +1,6 @@
 import random
 from utils import pushtext
+
 class Monster:
     def __init__(self, name, examine, dialogue=[], drops=None, attack=1, 
     health=5, speed = 1, expdrop = 0, defense = 0, level = 0):

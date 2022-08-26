@@ -1,5 +1,9 @@
+from equippable import Armor, ArmorType
+from item import Item
 from utils import *
 import random
+
+from weapon import Weapon
 
 class Player:
     def __init__(self, startingroom = None, name = "errorname"):
@@ -11,15 +15,12 @@ class Player:
         self.name = name
         self.level = 1
         self.experience = 0
-
-        #for combat
-        #player attack will range from 0-20
-        #player health will range from 0-99
-        #player speed will range from 0-20
-        self.health = 10
-        self.attack = 4
-        self.magicattack = 1
-        self.speed = 15
+        self.magiclevel = 1
+        self.health = 10 #player health will range from 10-99
+        self.maxhealth = 10     
+        self.attack = 1 #player attack will range from 1-20
+        self.magiclevel = 1 #player magiclevel will range 1-99
+        self.speed = 3  #player speed will range from 3-20
 
         #for equip
         self.headslot = None
@@ -27,7 +28,43 @@ class Player:
         self.bootslot = None
         self.ringslot = None
         self.weapon   = None
-
+    
+    def equip(self, characteritem):
+        if isinstance(characteritem, Item):
+            if isinstance(characteritem, Weapon):
+                self.inventory.append(self.weapon)
+                self.weapon = characteritem
+            if isinstance(characteritem, ArmorType.HELMET):
+                self.inventory.append(self.headslot)
+                self.headslot = characteritem
+            if isinstance(characteritem, ArmorType.BODY):
+                self.inventory.append(self.bodyslot)
+                self.bodyslot = characteritem
+            if isinstance(characteritem, ArmorType.BOOTS):
+                self.inventory.append(self.bootslot)
+                self.bootslot = characteritem
+            if isinstance(characteritem, ArmorType.RING):
+                self.inventory.append(self.ringslot)
+                self.ringslot = characteritem
+    
+    def unequip(self, characteritem):
+        if isinstance(characteritem, Item):
+            if isinstance(characteritem, Weapon):
+                self.inventory.append(self.weapon)
+                self.weapon = None
+            if isinstance(characteritem, ArmorType.HELMET):
+                self.inventory.append(self.headslot)
+                self.headslot = None
+            if isinstance(characteritem, ArmorType.BODY):
+                self.inventory.append(self.bodyslot)
+                self.bodyslot = None
+            if isinstance(characteritem, ArmorType.BOOTS):
+                self.inventory.append(self.bootslot)
+                self.bootslot = None
+            if isinstance(characteritem, ArmorType.RING):
+                self.inventory.append(self.ringslot)
+                self.ringslot = None
+            
     def getArmorRating(self):
         total = 0
         if self.headslot:
@@ -39,6 +76,26 @@ class Player:
         if self.ringslot:
             total += self.ringslot.armor
         return total
+    
+    def openinv(self):
+        os.system('cls' if os.name == 'nt' else 'clear')
+        print(">-----------------------------------------------<")
+        print(f"{self.name} - {self.health}/{self.maxhealth} HP - {self.gold} Gold")
+        print(f"Weapon - {self.weapon}")
+        print(f"Head - {self.headslot}")
+        print(f"Ring - {self.ringslot}")
+        print(f"Body - {self.bodyslot}")
+        print(f"Boots - {self.bootslot}")
+        print(">-----------------------------------------------<")
+        g = self.inventory
+        
+        print(self.inventory.sort(key=g))
+        for item in self.inventory:
+            print(self.inventory[0:8])
+        if len(self.inventory) > 9:
+            print("[0] Next Page -->")
+        playerselect = input()
+        pass
     
     def calcdamage(self, enemydefense, enemyspeed):
         

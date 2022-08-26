@@ -14,7 +14,13 @@ def compareblename(name:str):
     return name.lower().replace(" ","")
     
 
-
+def checkmax(n, min, max):
+    if n < min:
+        return min
+    elif n > max:
+        return max
+    else:
+        return n
    
 def pushtext(text, speaker = None, speed = 0, cutscenemode = False):
     """
@@ -26,37 +32,42 @@ def pushtext(text, speaker = None, speed = 0, cutscenemode = False):
     0.03 = default speed
     0.07 = agonizingly slow
     """
+    textlist = [text]
     if text == None:
         return
     if cutscenemode == True:    #cutscene mode is for auto text
         if speaker == None:
-            for char in text:
-                sys.stdout.write(char)
-                sys.stdout.flush()
-                time.sleep(speed)
-            time.sleep(0.3)
+            for text in textlist:
+                for char in text:
+                    sys.stdout.write(char)
+                    sys.stdout.flush()
+                    time.sleep(speed)
+                time.sleep(0.3)
         if speaker:
             sys.stdout.write(speaker + ": ")
-            for char in text:
-                sys.stdout.write(char)
-                sys.stdout.flush()
-                time.sleep(speed)
-            time.sleep(0.5)
+            for text in textlist:
+                for char in text:
+                    sys.stdout.write(char)
+                    sys.stdout.flush()
+                    time.sleep(speed)
+                time.sleep(0.5)
                 
     if cutscenemode == False:
         if speaker == None:
-            for char in text:
-                sys.stdout.write(char)
-                sys.stdout.flush()
-                time.sleep(speed)
-            input()
+            for text in textlist:
+                for char in text:
+                    sys.stdout.write(char)
+                    sys.stdout.flush()
+                    time.sleep(speed)
+                input()
         else:
             sys.stdout.write(speaker + ": ")
-            for char in text:
-                sys.stdout.write(char)
-                sys.stdout.flush()
-                time.sleep(speed)      
-            input()
+            for text in textlist:
+                for char in text:
+                    sys.stdout.write(char)
+                    sys.stdout.flush()
+                    time.sleep(speed)      
+                input()
     else:
         return
 

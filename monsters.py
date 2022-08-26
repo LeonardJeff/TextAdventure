@@ -9,15 +9,27 @@ import random
 #monster speed will range from 0-20
 
 firstgoblin = Monster(
-"Wandering Goblin", 
+"Wandering Goblin",
 "Green ugly goblin",
 "t", 
 drops = [apple, mushroom],
 attack = 3, 
 health = 10,
-speed = 1,
+speed = 12,
 expdrop = 5,
 level= 4)
+
+forestdemon = Monster(
+"Woods Demon",
+"The two jagged horns pertruding from both sides of his head suggest he is not a friend.",
+"The demon lets out an aggressive screech as it begins to stomp towards you.",
+drops = [],
+attack = 7,
+health = 75,
+speed = 10,
+defense = 5,
+level = 25
+)
 
 goblin2 = Monster(
 "Goblin2", 
