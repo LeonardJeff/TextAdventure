@@ -1,5 +1,5 @@
 class NPC:
-    def __init__(self, name, examine, dialogue=[], greeting="greetings, i am error", inventory=None, questcompleted =None, questunfinished=None, quest1=None, quest2=None):
+    def __init__(self, name, examine, dialogue=[], greeting="greetings, i am error", inventory=None, questcompleted =None, questunfinished=None, quest1=None, quest2=None, action = None):
 
         if inventory == None:
             inventory = []
@@ -13,5 +13,6 @@ class NPC:
         self.quest1 = quest1
         self.quest2 = quest2
         self.dialogue = dialogue
+        self.action = action
 
     

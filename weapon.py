@@ -1,11 +1,11 @@
 import item
 
 class Weapon(item.Item):
+    """Weapon class inherits from item class, but adds attackbonus, speedbonus, and armorbonus."""
     
-    def __init__ (self, name, examine, attackbonus, speedbonus = 0, armorbonus = 0, sellprice = None, tooltip = None,):
-        super().__init__(name, examine, sellprice = sellprice, tooltip = None)
+    def __init__ (self, name, examine, attackbonus, sellprice = None, tooltip = None, speedbonus = None, armorbonus = None):
+        super().__init__(name,examine,sellprice,tooltip)
         self.attackbonus = attackbonus
         self.speedbonus = speedbonus
         self.armorbonus = armorbonus
-        self.sellprice = sellprice
         

@@ -12,23 +12,25 @@ from utils import pushtext
 def ai(enemy, player, turn):
     if enemy.name == "Wandering Goblin":       
         chance = random.randint(1,10)
-        pushtext("Debug Enemy rolled a " + str(chance) + " to determine ai")
+        #pushtext("Debug Enemy rolled a " + str(chance) + " to determine ai")
 
-        if enemy.health < (enemy.health/2):       #if monster health is lower than your attack stat, 60% chance monster will consume an item if they have one.        
+        if enemy.health < (enemy.maxhealth/2):       #if monster health is lower than your attack stat, 60% chance monster will consume an item if they have one.        
             if chance <= 6:
-                if enemy.drops:
-                    if enemy.drops[0].consumable == True:
-                        action = [1, "The enemy fake consumes one of its items."]
+                if enemy.inventory:
+                    if enemy.inventory[0].consumable == True:
+                        action = [1, "The enemy consumes one of its items."]
                         return action
                     else:
-                        action = enemy.calcdamage(player.getArmorRating(), player.speed)
+                        subaction = enemy.calcdamage(player.getArmorRating(), player.speed)
+                        action = [4, subaction[0], subaction[1]]
                         return action
             if chance >6 and chance <= 8:
-                action =[2,"The Goblin growls menacingly at you - increasing its attack by 1."]
+                action =[2,"The Goblin growls menacingly at you", 2]
                 enemy.attack += 1
                 return action
             if chance >8:
-                action = [4, enemy.calcdamage(player.getArmorRating(), player.speed)[0], enemy.calcdamage(player.getArmorRating(), player.speed)[1]]
+                subaction = enemy.calcdamage(player.getArmorRating(), player.speed)
+                action = [4, subaction[0], subaction[1]]
                 return action
 
         if player.level - enemy.level >= 3:  #if player is 3 levels higher, monster has 10% chance of runaway, and 70% chance to do damage, 10% to growl
@@ -36,50 +38,58 @@ def ai(enemy, player, turn):
                 action = [3, "The goblin flees from battle!"]
                 return action
             if chance > 1 and chance <= 8:
-                action = [4, enemy.calcdamage(player.getArmorRating(), player.speed)[0], enemy.calcdamage(player.getArmorRating(), player.speed)[1]]
+                subaction = enemy.calcdamage(player.getArmorRating(), player.speed)
+                action = [4, subaction[0], subaction[1]]
                 return action
             if chance > 8:
-                action = [2, "The Goblin growls menacingly at you - increasing its attack by 1."]
+                action = [2, "The Goblin growls menacingly at you", 2]
                 return action
 
-        if player.health < enemy.attack: 
+        if player.health < enemy.attack:
             if chance <= 2:
-                action = [4, enemy.calcdamage(player.getArmorRating(), player.speed)[0], enemy.calcdamage(player.getArmorRating(), player.speed)[1]]
+                subaction = enemy.calcdamage(player.getArmorRating(), player.speed)
+                action = [4, subaction[0], subaction[1]]
                 return action 
             if chance > 2 and chance <=8:
-                action = [2, "The Goblin growls menacingly at you - increasing its attack by 1."]
+                action = [2, "The Goblin growls menacingly at you", 2]
                 return action
             if chance >8:
-                if enemy.drops:
-                    if enemy.drops[0].consumable == True:
+                if enemy.inventory:
+                    if enemy.inventory[0].consumable == True:
                         action = [1, "The enemy consumes one of its items"]
                         return action
 
         if enemy.level > player.level:  #if monster level is greater than player's level, 70% chance of attack, 30% growl
             if chance <= 3:
-                action = [2, "The Goblin growls menacingly at you - increasing its attack by 1."]
+                action = [2, "The Goblin growls menacingly at you", 2]
                 return action
             if chance >= 4:
-                action = [4, enemy.calcdamage(player.getArmorRating(), player.speed)[0], enemy.calcdamage(player.getArmorRating(), player.speed)[1]]
+                subaction = enemy.calcdamage(player.getArmorRating(), player.speed)
+                action = [4, subaction[0], subaction[1]]
                 return action
         else:                           #default 70% chance of attack
             if chance <= 3:
-                action = [2, "The Goblin growls menacingly at you - increasing its attack by 1."]
+                action = [2, "The Goblin growls menacingly at you", 2]
                 return action
             if chance > 3:
-                action = [4, enemy.calcdamage(player.getArmorRating(), player.speed)[0], enemy.calcdamage(player.getArmorRating(), player.speed)[1]]
+                subaction = enemy.calcdamage(player.getArmorRating(), player.speed)
+                action = [4, subaction[0], subaction[1]]
                 return action
+    
+    
+    
     
     if enemy.name == "Woods Demon":       
         if turn == 0:
-            action = [3, "The creature shrieks - summoning roots around your body making it impossible to escape.",
-            "The Woods Demon has prevented you from being able to run away."]
+            action = [5, "The creature shrieks - summoning roots around your body making it impossible to escape.",
+            "The Woods Demon has prevented you from being able to run away."]    
             return action
         if turn == 1:
-            action = [3, "The demon screeches -", "The demon raised its attack by 3!"]
-            enemy.attack =+8
-            pushtext("The enemy now has "+ str(enemy.attack) + " attack.", None, 0.07)
+            action = [2, "The Woods Demon screeches -", 2]
             return action
         if turn == 2:
-            action = [3, "The demon 3rd move", "The demon raised itssdsdsdsd"]
+            action = [3, "The Woods Demon looks up to the sky and raises its hands - it seems to be charging up... something.", "The Woods Demon is charging up!"]
+            return action
+        if turn == 3:
+            action = [6, "The Woods Demon down at you. The demon forms both his hands into fists and points his arms towards you.", "You begin to feel rumbling beneath your feet.", "Large vines begin to encircle you, you see one begin to wind up and -", "THWACK!", "..."]
             return action

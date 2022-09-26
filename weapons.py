@@ -1,5 +1,4 @@
-from weapon import Weapon
-from weapons import *
+from weapon import *
 
 #Sword
 axe = Weapon(
@@ -20,9 +19,10 @@ tooltip = ["+1 Attack", "+1 Swag"])
 
 rustySword = Weapon(
 name ="rusty sword", 
-examine="A used and very weathered sword.",
-attackbonus= 3,
-speedbonus= 0,
+examine ="A used and very weathered sword.",
+attackbonus = 3,
+speedbonus = 0,
+armorbonus = 0,
 tooltip = "+3 Attack")
 
 ironSword = Weapon(
