@@ -48,7 +48,9 @@ r11 = Room(11, "in East Galawyn Plains", ) #make sure to include obvious scenery
 
 r12 = Room(12, "at the goblin campsite", )
 
-r13 = Room(13, "at North Galawyn Plains", )
+r13 = Room(13, "at North Galawyn Plains", access = False, lockreq = quests.secondquest, 
+lockdesc = "You're going to need a key to get past the gate in this direction.",
+firstenter = ["You take the key from your pockets, and insert it into the giant lock on the gate.", "The door screeches open."])
 
 r1.setNeighbors(nroom=r3, sroom=r2)
 r2.setNeighbors(nroom=r1)

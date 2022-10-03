@@ -1,5 +1,5 @@
 from scenery import *
-from monsters import getgoblin, getdemon
+from monsters import getcoyote, getgoblin, getdemon
 import items
 import equippables
 import weapons
@@ -10,7 +10,7 @@ tree1 = Scenery("tree",
 "A tree :)")
 
 firstrock = Scenery("Boulder", 
-examine = "A very unassuming large boulder. Probably has been there for", 
+examine = "A very unassuming large boulder. Probably has been there for millennia", 
 inspecttext= "You fail to find anything remotely noteworthy about the large boulder.",
 itemtext= ["At the base of the boulder you find a cute little bug!", 
 "Upon closer inspection, it looks like a pillbug!", 
@@ -46,7 +46,7 @@ flourmill = Scenery("Flour Mill",
 ["You approach the flour mill. You can hear a creature growling inside.", 
 "You carefully begin to approach the front doorway.", 
 "!!!",
-"The towering creature breaks through the front of the stone building!",
+"A towering creature breaks through the front of the stone building!",
 "You hear someone yelling from behind - ",
 "???: Wait!!!",
 "The demonic looking creature steps towards you -"], 
@@ -65,3 +65,55 @@ itemtext= ["It's probably best if you stay out of the lake.",
 container= weapons.rustySword,
 visible = True
 )
+
+bearcrow = Scenery("Bearcrow", 
+examine = "Shouldn't it be called a scarebear?",
+inspecttext = ["You approach the rotund figure hung up by a tree branch thats been stuck vertically into the ground.",
+"Upon closer inspection, you can tell it is indeed bear shaped, but not really.", 
+"Its burlap torso has many large holes in it, with decaying straw poking out."],
+visible = True
+)
+
+farmersalmanac = Scenery("Farmers' Almanac",
+examine = "You can see a thin film of dust covering the open pages of the book.",
+inspecttext = ["The book must be years old - it looks like it is a few page turns away from degrading to dust.", 
+"The book has been left open to the \"Garden Pest Management\" section.", 
+"You skim a few lines of text until you come across something familiar:",
+"\nBearcrows: You may be familiar with scarecrows to keep away the birds, but how is one to keep away the pesky goblins?\nNo matter how many of them you exterminate, these pests will always keep coming back. If you're growing cabbage this season, a bearcrow is a must. \nWe all know goblins have a natural affinity to cabbage, but did you know goblins will run at the sight of a bear? \nIt's unfortunate that bears aren't native to the lands around Galawyn, but that may change in upcoming seasons as bears have been slowly finding their way west of Acra Forest.",
+"On the next page is a crudely drawn image of a bear."],
+)
+
+gate1 = Scenery("Iron Gate",
+examine = "The gate to the north looks secure. Definitely no way of getting through without a key.",
+inspecttext = ["You approach the gate to the north.", "It seems securely shut by a lock on the front."],
+visible = True
+)
+
+gate2 = Scenery("Iron Gate",            #unused right now
+examine = "The gate to the north looks secure. Definitely no way of getting through without a key.",
+inspecttext = ["You approach the gate to the north.", "It seems securely shut by a lock on the front."],
+visible = True
+)
+
+flourmill = Scenery("Flour Mill",
+"An unfinished construction project. Probably would be further along in its construction if you hadn't been sleeping on the job.",
+inspecttext = ["You approach the flour mill. You can hear a creature growling inside.", 
+"You carefully begin to approach the front doorway.", 
+"!!!",
+"The towering creature breaks through the front of the stone building!",
+"You hear someone yelling from behind - ",
+"???: Wait!!!",
+"The demonic looking creature steps towards you -"], 
+enemyspawn= getdemon)
+
+foresttreeline = Scenery("Forest outcrop",
+examine = "It gets dark quickly, there might be some danger if you search around here...",
+inspecttext = ["You approach the forest outcrop. You can hear a creature growling at the treeline ahead...",
+"!!!"], 
+enemyspawn= getgoblin)
+
+animalden = Scenery("Animal Den",
+examine = "It might be dangerous to search in an animals den...",
+inspecttext = ["You approach the anial den. You can hear a creature growling from inside...",
+"!!!"], 
+enemyspawn= getcoyote)

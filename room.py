@@ -40,11 +40,12 @@ def talkto(player, npc):
 	pushtext(npc.greeting, npc.name, speed = 0.04,)
 	if len(npc.quests) == 0:
 		pushtext(npc.dialogue, npc.name, 0.03)
-		return					
-	
+		return							
+							#this system of handling quests is terrible, and I plan to essentially rewrite all of this.
 	for quest in npc.quests:					#this code block removes items one by one if it's a quest item in your inventory
 		if quest in player.quests:
 			pushtext(npc.quest1, npc.name, 0.03)
+			
 			if quest.item in player.inventory:	#if player has quest item, display quest2 dialogue
 				pushtext(npc.quest2, npc.name, 0.03)
 				invcopy = player.inventory.copy()		#make a copy of the list for iterative purposes
@@ -238,7 +239,8 @@ class Room:
 					else:	
 						pushtext(scenery.inspecttext)	#if there is no item, display default search text	
 					if scenery.enemyspawn:					#if scenery has an enemy spawner, initiate combat
-						sceneryCombat = combat.Combat(player, scenery.enemyspawn)
+						enemyinstance = scenery.enemyspawn()
+						sceneryCombat = combat.Combat(player, enemyinstance)
 						sceneryCombat.startcombat()
 					scenery.inspected = True				#unused atm
 					return

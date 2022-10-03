@@ -54,6 +54,8 @@ class Combat:
         if self.enemy.health <= 0:
             pushtext("You defeated " + self.enemy.name + "!")
             self.combatEnd = 1
+            self.player.inventory.append(self.enemy.drops)
+            pushtext(f"The {self.enemy.name} dropped {self.enemy.drops}.")
             return True
         if self.combatEnd == 1:
             return True
@@ -128,8 +130,7 @@ class Combat:
         print(f"| {self.turndesc[-3]}")
         print(f"| {self.turndesc[-4]}")
         print(f"| {self.turndesc[-5]}")
-        ##print(str(self.turn)) for bug testing the turn system.
-        print(">-----------------------------------------------------------<")
+        print(">-----------------------------------------------------------<")          ##print(str(self.turn)) for bug testing the turn system.
         print("| [1]    Attack                |")
         if monsters.wanderinggoblin.health <= 0:
             print("| [2]    Magic                 |")
@@ -156,11 +157,10 @@ class Combat:
             self.combatturnhandler(playerdamage,enemydamage)
         
         if self.OptionNumber.get(playerinput) == CombatOption.magic:
-            if self.player.magiclevel <= 5:
-                print("You concentrate your unknown energy from within into a concentrated form at your fingertips -")
-                playerdamage = Player.calcmagic(self.player, self.enemy.defense, self.enemy.speed)
-                enemydamage = combatbehavior.ai(self.enemy, self.player, self.turn)
-                self.combatturnhandler(playerdamage,enemydamage)
+            print("You concentrate your unknown energy from within into a concentrated form at your fingertips -")
+            playerdamage = Player.calcmagic(self.player, self.enemy.defense, self.enemy.speed)
+            enemydamage = combatbehavior.ai(self.enemy, self.player, self.turn)
+            self.combatturnhandler(playerdamage,enemydamage)
 
         if self.OptionNumber.get(playerinput) == CombatOption.items:
             pushtext("You open your bag:")

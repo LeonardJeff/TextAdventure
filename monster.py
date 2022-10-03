@@ -3,7 +3,7 @@ from utils import pushtext
 
 class Monster:
     def __init__(self, name, examine, dialogue=[], inventory=None, attack=1, 
-    health=5, maxhealth = 5, speed = 1, expdrop = 0, defense = 0, level = 0):
+    health=5, maxhealth = 5, speed = 1, expdrop = 0, defense = 0, level = 0, drops = None):
 
         if inventory is None:
             inventory = []
@@ -19,6 +19,7 @@ class Monster:
         self.expdrop = expdrop
         self.defense = defense
         self.level = level
+        self.drops = drops
     def __repr__(self):
         return f"#<Monster: {self.name}{self.health}>"
     
@@ -33,9 +34,9 @@ class Monster:
             5 : .9,
             6 : 1,
             7 : 1,
-            8 : 1,
-            9: 1.1,
-            10: 1.75
+            8 : 1.1,
+            9: 1.2,
+            10: 1.5
             }
         
         if self.speed >= playerspeed:

@@ -8,6 +8,8 @@ flowers = Item(
 "Bundle of Flowers", 
 "They seem to be haphazardly picked by hand. Even so, they're very colorful and would make for a nice bouquet.",
 tooltip = "Dropped by Wandering Goblin",
+consumable = True,                              #Yes you can eat the flowers hehe
+healvalue = 2,
 sellprice = 3,)
 
 
@@ -21,7 +23,7 @@ mushroom = Item(
 tooltip = "+5 Health",
 consumable = True,
 sellprice = 2,
-healvalue=5)
+healvalue = 5)
 
 mushroom1 = Item(
 "brownish mushroom", 
@@ -81,6 +83,9 @@ sellprice = 2)
 pillbug = Item(
 name ="pillbug",
 examine ="It seems to be happy with its home being in your pockets!",
-sellprice = 13
+sellprice = 13)
 
-)
+coyotebones = Item(
+name ="coyote bones",
+examine ="A pile of bones. Most notably, only the cool big ones.",
+sellprice = 13)

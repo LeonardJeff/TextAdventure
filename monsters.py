@@ -18,7 +18,9 @@ health = 12,
 maxhealth=12,
 speed = 2,
 expdrop = 5,
-level= 4)
+level= 4,
+drops = None
+)
 
 forestdemon = Monster(
 "Woods Demon",
@@ -40,7 +42,8 @@ attack = 3,
 health = 12, 
 maxhealth = 12,
 level = 3,
-speed = 3)
+speed = 3,
+drops = flowers)
 
 garg = Monster(
 "Garg", 
@@ -50,17 +53,35 @@ attack = 6,
 health = 25
 )
 
-def getgoblin(attack = 3, health = 10, attackvariantion = [0,3]):  #add defaults and then when u call getgoblin set the random stuff
+def getgoblin(attack = 3, health = 10, speed = 3, attackvariantion = [0,2], healthvariantion = [0,7] , speedvariantion = [0,4]):  #add defaults and then when u call getgoblin set the random stuff
     m = Monster(
-    "Goblin", 
-    "Green, ugly, and disgusting.",
-    "A run-of-the-mill goblin who doesn't seem to keen on becoming friends.", 
+    name = "Goblin", 
+    examine = "Green, ugly, and disgusting.",
+    dialogue = "The goblin grumbles something before it chucks a few small stones in your direction",
+    #"A run-of-the-mill goblin who doesn't seem to keen on becoming friends.", 
     inventory = [mushroom],
     attack = attack + random.randint(attackvariantion[0], attackvariantion[1]), 
-    health = health,
-    speed = 1,
-    defense = 1,
-    expdrop = 4)
+    health = health + random.randint(healthvariantion[0], healthvariantion[1]),
+    speed = speed + random.randint(speedvariantion[0], speedvariantion[1]),
+    defense = 3,
+    expdrop = 4,
+    drops = wildturnip
+    )
+    return m
+
+def getcoyote(attack = 3, health = 10, speed = 4, attackvariantion = [0,2], healthvariantion = [0,7] , speedvariantion = [0,2]):  #add defaults and then when u call getgoblin set the random stuff
+    m = Monster(
+    name = "Plains Coyote", 
+    examine = "It doesn't look too friendly.",
+    dialogue = "A Plains Coyote draws near!", 
+    inventory = [],
+    attack = attack + random.randint(attackvariantion[0], attackvariantion[1]), 
+    health = health + random.randint(healthvariantion[0], healthvariantion[1]),
+    speed = speed + random.randint(speedvariantion[0], speedvariantion[1]),
+    defense = 2,
+    expdrop = 5,
+    drops = coyotebones
+    )
     return m
 
 def getdemon(attack = 7, health = 75, speed = 10, defense = 3, level = 25, inventory = None): 
@@ -74,17 +95,4 @@ def getdemon(attack = 7, health = 75, speed = 10, defense = 3, level = 25, inven
     speed = speed,
     defense = defense,
     level = level) 
-    return m
-
-def getgoblin(attack = 3, health = 10, attackvariantion = [0,3]):  #add defaults and then when u call getgoblin set the random stuff
-    m = Monster(
-    "Goblin", 
-    "Green, ugly, and disgusting.",
-    "A run-of-the-mill goblin who doesn't seem to keen on becoming friends.", 
-    inventory = [mushroom],
-    attack = attack + random.randint(attackvariantion[0], attackvariantion[1]), 
-    health = health,
-    speed = 1,
-    defense = 1,
-    expdrop = 4)
     return m

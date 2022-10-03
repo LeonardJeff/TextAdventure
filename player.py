@@ -17,8 +17,8 @@ class Player:
         self.level = 1
         self.experience = 0
         self.magiclevel = 1
-        self.health = 10 #player health will range from 10-99
-        self.maxhealth = 10     
+        self.health = 15 #player health will range from 10-99
+        self.maxhealth = 15     
         self.attack = 3 #player attack will range from 1-20
         self.magiclevel = 1 #player magiclevel will range 1-99
         self.speed = 3  #player speed will range from 3-20
@@ -119,6 +119,7 @@ class Player:
                         templist.append(items)
                 if len(templist) == 0:
                     pushtext("You have no items in your bag")
+                    return
                 if len(templist) > 8:
                     sublists = [templist[x:x+8] for x in range(0, len(templist), 8)] #every 8 items
                     
@@ -159,6 +160,7 @@ class Player:
                         templist.append(items)
                 if len(templist) == 0:
                     pushtext("You have no weapons in your bag")
+                    return
                 if len(templist) > 8:
                     sublists = [templist[x:x+8] for x in range(0, len(templist), 8)] #make lists for every 8 items
                     
@@ -198,6 +200,7 @@ class Player:
                         templist.append(items)
                 if len(templist) == 0:
                     pushtext("You have no armor in your bag")
+                    return
                 if len(templist) > 8:
                     sublists = [templist[x:x+8] for x in range(0, len(templist), 8)] #every 8 items
                     
@@ -238,8 +241,8 @@ class Player:
                         templist.append(items)
                     if len(templist) == 0:
                         pushtext("You have nothing in your inventory. (nice)")
+                        return
                     if len(templist) > 8:
-                        pushtext("worked3")
                         sublists = [templist[x:x+8] for x in range(0, len(templist), 8)] #make a list for every 8 items
 
                         for i in sublists:                       #iterate over pages of item lists one at a time
@@ -264,6 +267,7 @@ class Player:
                         for item in page:
                             print(f"[{str(item[0])}] {str(item[1])}")   #print every available consumable item
                         print("(Sorry! Using items from this menu doesn't work at the moment!)")
+                        playerinput = input()
                         #print("Sorry! Using items from the inventory doesn't work at the moment! Atleast now you know what items you have :)")
                         #print("Here's why if you're curious: The inventory was first implemented (correctly) while programming combat mechanics.")
                         #pushtext("The game has no idea what to do (yet) if you use any item from this list.")    
