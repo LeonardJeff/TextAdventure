@@ -12,7 +12,6 @@ consumable = True,                              #Yes you can eat the flowers heh
 healvalue = 2,
 sellprice = 3,)
 
-
 key1 = Item(
 "shiny key", 
 "A key to the gate by Lily's house. ")

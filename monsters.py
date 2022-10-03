@@ -65,7 +65,7 @@ def getgoblin(attack = 3, health = 10, speed = 3, attackvariantion = [0,2], heal
     speed = speed + random.randint(speedvariantion[0], speedvariantion[1]),
     defense = 3,
     expdrop = 4,
-    drops = wildturnip
+    drops = mushroom
     )
     return m
 

@@ -60,6 +60,8 @@ class Player:
                     self.ringslot = characteritem
                     self.inventory.remove(characteritem)
         pushtext(f"Equipped {str(characteritem)}.")
+        if characteritem.tooltip != None:
+            pushtext(f"{str(characteritem)} gives you ({characteritem.tooltip})")
     
     ###def unequip(self, enum):
     #    if isinstance(enum, Weapon):

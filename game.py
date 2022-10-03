@@ -15,7 +15,7 @@ print("  |  \__| |  /  _____  \  |  |____   /  _____  \  \    /\    /         | 
 print("   \______| /__/     \__\ |_______| /__/     \__\  \__/  \__/          |__|     |__| \__|") 
 print("")
 print("")
-print("   By Jeff Leonard                                                           Version 1.0")       
+print("   By Jeff Leonard                                                           Version 1.1")       
 #print("     _       _                 _                  _                     _                      ")
 #print("    /_\     | |_   ___  __ __ | |_      __ _   __| | __ __  ___   _ _  | |_   _  _   _ _   ___ ")
 #print("   / _ \    |  _| / -_) \ \ / |  _|    / _` | / _` | \ V / / -_) | ' \ |  _| | || | | '_| / -_)")
@@ -63,7 +63,7 @@ rooms.r2.additem(items.woodenplanks)
 rooms.r2.addscenery(scenerys.firstrock)
 
 
-rooms.r3.addnpc(npcs.worker3) #unconcious man
+rooms.r3.addnpc(npcs.worker3) #unconcsious man
 rooms.r3.addnpc(npcs.worker4) #entangled worker
 rooms.r3.additem(weapons.axe)
 
@@ -76,9 +76,6 @@ rooms.r4.addscenery(scenerys.tempestlake)
 players.player.location = (rooms.r1)
 
 rooms.r6.additem(items.key1)
-#rooms.r1.additem(equippables.testHelmet)
-#players.player.inventory.append(items.woodenplanks)     #BUG TEST DELETE THIS
-#players.player.inventory.append(items.woodenplanks)
 
 pushtext(f"{players.player.name}? {players.player.name}... I think I've heard my daughter mention your name before.","???", 0.03)
 pushtext("Anyway, my name is Frank, but you can call me sir. I've been working construction for 12 years and I've never had a worse first impression for a new-hire of mine.","Frank", 0.03)
@@ -190,14 +187,16 @@ if monsters.wanderinggoblin.health >0:
 
 quests.secondquest.addquest(npcs.Hunter, players.player)     
 rooms.r8.addnpc(npcs.Hunter)
-rooms.r8.addscenery(scenerys.foresttreeline)
+rooms.r7.addscenery(scenerys.foresttreeline)
 rooms.r10.addscenery(scenerys.animalden)
+rooms.r10.additem(items.wildturnip)
+rooms.r11.additem(items.wildturnip)
 
 rooms.r13.addnpc(npcs.tempend)
 rooms.r13.additem(weapons.aduriteGreatSword)
-rooms.r13.additem(weapons.steelSword)
 rooms.r13.additem(weapons.rustywoodenstick)
 rooms.r13.additem(equippables.aduriteArmor)
+rooms.r13.additem(equippables.victoryring)
 rooms.r13.addnpc(npcs.Hubert3)
 
 while quests.thirdquest.complete == 0:

@@ -20,7 +20,9 @@ questcompleted = ["Now that you've finally done something of value, maybe I can 
 Frank2= NPC("Frank", 
 greeting = None,
 examine = "He seems a lot friendlier when he's not bossing you around.", 
-dialogue = (f"...","Make sure you say hi to my men in Galawyn when you get there.")
+dialogue = (f"...","Make sure to check up on my men at the infirmary when you get there.", 
+"If they're not there when you get there, they probably got better and went home.", 
+"No need to investigate it further.")
 )
 
 worker1 = NPC("Stonemason", 
@@ -40,7 +42,7 @@ dialogue= ((f"Hey {player.name}!","Did you know you can examine anything just by
 
 Lily2 = NPC("Lily", 
 greeting = None,
-examine = "Lily seems to have prepared for bed, having her hair in a bun, and wearing a nightgown.", 
+examine = "Lily seems to have prepared for bed, sporting a nightgown and her hair in a bun.", 
 dialogue= ((f"Hey {player.name}!",
 "I'm actually headed to Galawyn tomorrow morning to sell some fresh vegetables, so maybe I'll meet you there!"))
 )
@@ -63,7 +65,7 @@ dialogue =("psssst", "pssssssssssssssst!!", "Hey! I'm David!",
 action="teleport"
 )
 
-worker3 = NPC("Unconcious worker",
+worker3 = NPC("Unconscious worker",
 examine = ("You lean in closer to take a look", "He seems to be alright, he's still breathing." ), 
 greeting = None,
 dialogue =("...", "@The man doesn't look like he's intersted in talking right now.")
@@ -114,7 +116,7 @@ dialogue =("Hi there, I'm Eve!",
  "Were you the one that just slayed that goblin?",
 "You know, I saw that goblin from over here, it seemed to be interested in picking flowers, so I let it be.",
 "I think you may have spooked him when you opened the gate, and thats why he attacked you.",
-"Otherwise, I don't think it meant any harm..."
+"Otherwise, I don't think it meant any harm...",
 "Goblins don't run very fast, so you easily could have retreated and left it behind to think about its actions.",
 "Not all goblins are nice... especially the ones that come out of the tree-line over there,",
 "But maybe we should do all we can to be nice to eachother...",
@@ -160,7 +162,7 @@ examine = "He is definitely not from around here.",
 dialogue =("psssst", "pssssssssssssssst!!", "Hey! I'm Davi-", 
 "I travel the world to give advice to young'ns like you!",
 f"Oh - I remember you! You're {player.name}!",  
-"Here's a tip!", "If you're feeling tired typing out \"explore\", instead, just type out the direction you wan't to go!",
+"Here's a tip!", "If you're feeling tired typing out \"explore\", instead, just type out the direction you want to go!",
 "See you around!",
 "@A cloud of smoke appears in front of you, blocking your vision.", 
 "@Once the cloud dissipates, it's clear to see, the man is gone."),
@@ -180,12 +182,12 @@ questcompleted = ["Thank you much. As promised here is the key I promised.",
 )
 
 tempend = NPC("Jeff",
-examine = ("This guy seems likeable!" ), 
+examine = ("This guy seems " ), 
 greeting = None,
 dialogue =(f"hi {player.name}! Unfortunately, this is pretty much the end of the game for right now.", 
-"You're seeing some exclusive content here, as I only appear in demo versions of the game :)", 
-"Ahead are the gates to Galawyn, maybe one day you'll be able to go in! But for now it's locked :(", 
-"Thank you so much for playing!!!" )
+"Ahead are the gates to Galawyn, maybe one day you'll be able to go in! But for now it's locked in this game demo.", 
+"I've left some goodies on the ground for you to mess around with!",
+"Thank you so much for playing!!!", "No really", "Thank you :)")
 )
 
 #f"hi {player.name}! Unfortunately, this is pretty much the end of the game for right now.",        Old dialogue for tempend

@@ -70,19 +70,18 @@ class Combat:
             self.OptionNumber.update({"2" : CombatOption.magic})
             self.OptionNumber.update({"3" : CombatOption.items})
             self.OptionNumber.update({"4" : CombatOption.examine})       
-            self.OptionNumber["5"] = CombatOption.run   #keeping this here because im emotionally attached
+            self.OptionNumber["5"] = CombatOption.run   #keeping this code here because im emotionally attached
 
         os.system('cls' if os.name == 'nt' else 'clear')
         #firstpart
         print(str(self.player.health) + "				" + str(self.enemy.health))
         print(str(self.player.name) + "				" + str(self.enemy.name))
-        #second part
         print("_________________________________________________")
         print("|")
         print("|")
         print("|")
         print("|")
-        #third part
+        print("|")
         print(">-----------------------------------------------<")
         print("| [1]    Attack                |")
         if monsters.wanderinggoblin.health <= 0:
@@ -175,7 +174,9 @@ class Combat:
             
         if self.OptionNumber.get(playerinput) == CombatOption.examine:
             pushtext(f"You examine the {self.enemy.name}:")
-            pushtext(self.enemy.examine)            #include in this stats about the monster
+            print(self.enemy.examine)
+            print(f"The {self.enemy.name} currently has {self.enemy.attack} attack, and {self.enemy.speed} speed.")
+
         #import pdb 
         #pdb.set_trace() 
         

@@ -114,6 +114,6 @@ enemyspawn= getgoblin)
 
 animalden = Scenery("Animal Den",
 examine = "It might be dangerous to search in an animals den...",
-inspecttext = ["You approach the anial den. You can hear a creature growling from inside...",
+inspecttext = ["You approach the animal den. You can hear a creature growling from inside...",
 "!!!"], 
 enemyspawn= getcoyote)
