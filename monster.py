@@ -35,8 +35,8 @@ class Monster:
             6 : 1,
             7 : 1,
             8 : 1.1,
-            9: 1.2,
-            10: 1.5
+            9: 1.1,
+            10: 1.4
             }
         
         if self.speed >= playerspeed:

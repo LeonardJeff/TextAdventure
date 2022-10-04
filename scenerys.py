@@ -1,5 +1,5 @@
 from scenery import *
-from monsters import getcoyote, getgoblin, getdemon
+from monsters import getcoyote, getgoblin, getdemon, getbee
 import items
 import equippables
 import weapons
@@ -21,8 +21,7 @@ carrotcroprow = Scenery("Carrot Crop Row",
 examine = "A row of carrot crops. Maybe nobody would notice if you took one...", 
 inspecttext= "You should probably leave the rest for whoever planted these...",
 itemtext= ["You look around to make sure noone is looking -", 
-"You kneel down and tightly grab the base of the carrot plant and pull -", 
-"After a little bit of tugging, you successfully unearth a large orange carrot."],
+"You kneel down and tightly grab the base of the carrot plant and pull -"],
 container = items.carrot)
 
 cucumbercroprow = Scenery("Cucumber Crop Row", 
@@ -57,7 +56,7 @@ examine = "Roughly you sized, they lead directly into a bunch of knocked-over ca
 inspecttext= "Nothing interesting happens.", visible = True, inspected = True)
 
 tempestlake = Scenery("Lake",
-examine= "An ecologically bustling lake, its amazing that you're generally unscathed from your journey into the lake.",
+examine= "An ecologically bustling lake, its amazing that you ended up relatively unscathed from your journey into the lake.",
 inspecttext= ["You can see a beaver soaking up the sun while he floats across the water on his back.", "Nice."],
 itemtext= ["It's probably best if you stay out of the lake.",
 "But, from a distance, you can see birds soaring, fish flopping,", "And what's this?", 
@@ -68,7 +67,7 @@ visible = True
 
 bearcrow = Scenery("Bearcrow", 
 examine = "Shouldn't it be called a scarebear?",
-inspecttext = ["You approach the rotund figure hung up by a tree branch thats been stuck vertically into the ground.",
+inspecttext = ["You approach the rotund scarecrow-like figure hung up by a tree branch thats been stuck vertically into the ground.",
 "Upon closer inspection, you can tell it is indeed bear shaped, but not really.", 
 "Its burlap torso has many large holes in it, with decaying straw poking out."],
 visible = True
@@ -81,6 +80,14 @@ inspecttext = ["The book must be years old - it looks like it is a few page turn
 "You skim a few lines of text until you come across something familiar:",
 "\nBearcrows: You may be familiar with scarecrows to keep away the birds, but how is one to keep away the pesky goblins?\nNo matter how many of them you exterminate, these pests will always keep coming back. If you're growing cabbage this season, a bearcrow is a must. \nWe all know goblins have a natural affinity to cabbage, but did you know goblins will run at the sight of a bear? \nIt's unfortunate that bears aren't native to the lands around Galawyn, but that may change in upcoming seasons as bears have been slowly finding their way west of Acra Forest.",
 "On the next page is a crudely drawn image of a bear."],
+)
+
+coatrack = Scenery("Coat Rack", 
+examine = "A few garments hang from the coat rack.", 
+inspecttext= "You search for more useful goodies, but fail to find anything worth taking.",
+itemtext = ["You rummage around the multiple articles of clothing hanging from the rack.", 
+"Underneath it all, you find a new-looking leather garment."],
+container = equippables.leatherPoncho
 )
 
 gate1 = Scenery("Iron Gate",
@@ -117,3 +124,11 @@ examine = "It might be dangerous to search in an animals den...",
 inspecttext = ["You approach the animal den. You can hear a creature growling from inside...",
 "!!!"], 
 enemyspawn= getcoyote)
+
+beehive = Scenery("Beehive",
+examine = "Who let a bees move in right next to all the wood planks... they seem disturbed by all the work going on around them.",
+inspecttext = ["You daringly approach the beehive for some reason.", 
+"A single bee takes notice, and instead of alerting the hive, takes matters into its own hands.",
+"!!!"],
+enemyspawn= getbee,
+visible = True)

@@ -16,13 +16,23 @@ key1 = Item(
 "shiny key", 
 "A key to the gate by Lily's house. ")
 
+honeydrop = Item(
+"Drop of Bee Pollen", 
+"Don't drink it all in one place!",
+tooltip = "+2 Health",
+consumable = True,
+sellprice = 2,
+healvalue = 2,
+droprate = 7)
+
 mushroom = Item(
 "mushroom", 
 "Hopefully it's not poisonous...",
 tooltip = "+5 Health",
 consumable = True,
 sellprice = 2,
-healvalue = 5)
+healvalue = 5,
+droprate = 7)
 
 mushroom1 = Item(
 "brownish mushroom", 
@@ -30,7 +40,8 @@ mushroom1 = Item(
 tooltip = "+3 Health",
 consumable = True,
 sellprice = 1,
-healvalue = 3)
+healvalue = 3,
+droprate = 8)
 
 mushroom2 = Item(
 "purplish mushroom", 
@@ -45,7 +56,8 @@ apple = Item(
 tooltip = "+5 Health",
 consumable = True,
 sellprice = 3,
-healvalue = 5)
+healvalue = 5,
+droprate = 7)
 
 cucumber = Item(
 "cucumber", 
@@ -77,7 +89,8 @@ wildturnip = Item(
 tooltip = "+5 Health",
 consumable = True,
 healvalue = 5,
-sellprice = 2)
+sellprice = 2,
+droprate = 7)
 
 pillbug = Item(
 name ="pillbug",
@@ -87,4 +100,5 @@ sellprice = 13)
 coyotebones = Item(
 name ="coyote bones",
 examine ="A pile of bones. Most notably, only the cool big ones.",
-sellprice = 13)
+sellprice = 13,
+droprate = 0)
