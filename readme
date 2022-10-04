@@ -1,3 +1,14 @@
-To launch the game, you will need to have python installed.
+(It is October 4th right now, and the game is in a buggy mess because of github right now. Please don't play the game yet lol, I will fix it in the morning,
+and this message will be gone.)
 
-right click game.py and open with python to play the game.
+It was originally intended to make the game a .exe file so you could run it easily,
+but I haven't gotten around to doing that yet.
+
+To launch the game, you will need to have python installed: https://www.python.org/downloads/
+Python is the programming language I used to make the game
+
+In the top right, click "Code" and then "Download Zip"
+
+Extract these files and then open up the resulting folder
+
+right click game.py and click "open with" and select python to play the game.
