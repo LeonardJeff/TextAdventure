@@ -43,7 +43,7 @@ class Combat:
             pushtext("You have run from battle",cutscenemode = True )
             self.combatEnd = 1
             self.startcombat
-        if type(subject) == Monster:
+        if type(subject) == monster.Monster:
             pushtext("The " + str(subject) + " fled from battle.",cutscenemode = True )
         
     def checkstate(self):
