@@ -31,7 +31,7 @@ def pushtext(text, speaker = None, speed = 0, cutscenemode = False):
     speed:
     0.015 = excited crazy
     0.02 = faster
-    0.03 = default speed
+    0.025 = default speed
     0.07 = agonizingly slow
     """
     if type(text) == str:   #if the input is a string, display string
@@ -86,7 +86,7 @@ def pushtext(text, speaker = None, speed = 0, cutscenemode = False):
                         sys.stdout.write(char)
                         sys.stdout.flush()
                         time.sleep(speed)
-                    time.sleep(0.5)
+                    time.sleep(0.2)
                     input()
                 else:
                     sys.stdout.write(speaker + ": ")
@@ -94,7 +94,7 @@ def pushtext(text, speaker = None, speed = 0, cutscenemode = False):
                         sys.stdout.write(char)
                         sys.stdout.flush()
                         time.sleep(speed)
-                    time.sleep(0.5)
+                    time.sleep(0.2)
                     input()
     else:
         return

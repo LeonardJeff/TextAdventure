@@ -2,7 +2,7 @@ from json import tool
 from equippable import *
 
 #Helmets
-goblinMask = Armor("Goblin mask", "It's a crudely carved plank of wood. Seems to be rotting.", ArmorType.HELMET, 1 )
+goblinMask = Armor("Goblin mask", "It's a crudely carved plank of wood. Seems to be rotting.", ArmorType.HELMET, 3, tooltip = "+3 Defense", droprate = 9)
 leatherHood = Armor("Leather hood", "", ArmorType.HELMET, 2)
 gargMask = Armor("Garg's mask","Finders keepers!", ArmorType.HELMET, 5)
 goldHelmet  = Armor("Ornamental gold helmet ", "", ArmorType.HELMET, 6)
@@ -13,15 +13,15 @@ steelGreatHelm = Armor("Steel great helm", "Premium protection for a Premium Pri
 aduriteCrown = Armor("Adurite crown", "A band of pure adurite metal that wraps around the head. It seems to fit your head perfectly.", ArmorType.HELMET, 15)
 #Body
 cottonGarb = Armor("Cotton garb", "", ArmorType.BODY, 1)
-leatherRobe = Armor("Leather robe", "", ArmorType.BODY, 3)
-leatherPoncho = Armor("Leather poncho", "Some may mistake it for a cape. It's a poncho.", ArmorType.BODY, 6)
+leatherRobe = Armor("Leather robe", "", ArmorType.BODY, 3, droprate = 9, tooltip = "+3 Defense")
+leatherPoncho = Armor("Leather poncho", "Some may mistake it for a cape. It's a poncho.", ArmorType.BODY, 2, tooltip = "+2 Defense")
 goldArmor = Armor("Gold plate armor", "", ArmorType.BODY, 10)    #tied with ironchainmail for armorvalue, make as a very rare
 ironChainMail = Armor("Iron chain mail", "", ArmorType.BODY, 10)
 ironArmor = Armor("Iron plate armor", "", ArmorType.BODY, 14)
 steelArmor = Armor("Steel plate armor", "", ArmorType.BODY, 19)
 aduriteArmor = Armor("Adurite plate armor", "Mythical armor that comes with mythical protection, all in stylish red.", ArmorType.BODY, 25, tooltip = "+25 Defense")
 #Boots
-leathershoes = Armor("Leather shoes","A remarkably ordinary pair of shoes. You can see a hole starting to form at the toe.", ArmorType.BOOTS, 1)
+leathershoes = Armor("Leather shoes","A remarkably ordinary pair of shoes. You can see a hole starting to form at the toe.", ArmorType.BOOTS, 1, tooltip = "+1 Defense", droprate = 9)
 leatherBoots = Armor("Leather boots","You check, and unfortunately, there is no steel toe.", ArmorType.BOOTS, 3)
 steelToeBoots = Armor("Steel toe leather boots","You check, and unfortunately, is no steel toe. However, it IS a new pair of boots.", ArmorType.BOOTS, 4)
 goldToeBoots = Armor("Gold toe leather boots","You check, and finally, you find some boots with some sort of metal toe.", ArmorType.BOOTS, 7)   #maybe give these to the player to inform them of the rarity of other gold items

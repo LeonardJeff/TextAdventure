@@ -50,12 +50,17 @@ class Combat:
         if self.player.health <= 0:
             pushtext(f"You were defeated by {self.enemy.name}!")
             pushtext("How unfortunate. You died.")
+            time.sleep(1)
             sys.exit(0) 
         if self.enemy.health <= 0:
             pushtext("You defeated " + self.enemy.name + "!")
             self.combatEnd = 1
-            self.player.inventory.append(self.enemy.drops)
-            pushtext(f"The {self.enemy.name} dropped {self.enemy.drops}.")
+            for drop in self.enemy.drops:              #this is crudely coded just because I want a simple itemdrop system.
+                dropchance = random.randint(1, 10)
+                if dropchance >= drop.droprate:
+                    self.player.inventory.append(drop)
+                    pushtext(f"{self.enemy.name} dropped {drop.name}!")
+
             return True
         if self.combatEnd == 1:
             return True
@@ -227,6 +232,7 @@ class Combat:
     def enemyattack (self, enemyturn):
         if enemyturn[0] == 1:   #uses item
             pushtext(f"The {self.enemy.name} consumed its {self.enemy.inventory[0]}!")
+            pushtext(f"The {self.enemy.name} gained {self.enemy.inventory[0].healvalue} health.")
             self.enemy.inventory[0].consume(self.enemy)
             self.turndesc.append(f"The {self.enemy.name} consumed its {self.enemy.inventory[0]}.")
             
@@ -291,27 +297,38 @@ class Combat:
 
         if playerturn[0] == "item":     
             pushtext(f"You consume your {str(playerturn[1])}.")
+           ## pushtext(f"You gain {str(playerturn[1].healvalue)} health.")
             self.turndesc.append(f"{self.player.name}| You used: {str(playerturn[1])}")
             self.turn+=1
         
         if self.player.speed >= self.enemy.speed:  #if player is faster than enemy: player go first 
             if self.combatEnd == 0:
+                playerdamage = playerturn[1]
                 if playerturn[0] == "physical":                         
+                    pushtext("You go in for an attack -")
                     if playerturn[2] == 0:
+                        playerdamage = 0
                         pushtext("Your attack misses!")
                     if playerturn[2] == 10:
                         pushtext("You land a critical strike!") 
                     pushtext("you do " + str(playerturn[1]) + " damage")
                     self.turndesc.append(f"You do {playerturn[1]} damage towards {self.enemy.name}.") 
-                    self.enemy.health -= playerturn[1]
+                    self.enemy.health -= playerdamage
                     self.turn+=1
 
                 if playerturn[0] == "magic":
-                    pushtext("You feel the strange power from deep within you intensify.")
+                    playerdamage = playerturn[1]
+                    pushtext("You feel the power from deep within you intensify.")
                     self.player.magiclevel+=1
+                    if playerturn[2] == 0:
+                        playerdamage = 0
+                        pushtext("Your attack misses!")
+                    if playerturn[2] == 10:
+                        pushtext("You deal a critical strike!")
                     pushtext("You do " + str(playerturn[1]) + " magic damage.")
                     self.turndesc.append(f"You do {playerturn[1]} magic damage towards {self.enemy.name}.") 
-                    self.enemy.health -= playerturn[1]
+                    self.enemy.health -= playerdamage
+                    pushtext(f"Your magic level has increased by 1. Your magic level is now {self.player.magiclevel}.")
                     self.turn+=1
 
                 if self.enemy.health >0:    #if enemy survives your attack
@@ -322,22 +339,31 @@ class Combat:
             self.enemyattack(enemyturn)   #enemy attacks first
             if self.combatEnd == 0:
                 if self.player.health >0:
-                    if playerturn[0] == "physical":                         
+                    if playerturn[0] == "physical": 
+                        playerdamage = playerturn[1]
+                        pushtext("You go in for an attack -")                        
                         if playerturn[2] == 0:
+                            playerdamage = 0
                             pushtext("Your attack misses!")
                         if playerturn[2] == 10:
                             pushtext("You land a critical strike!") 
                         pushtext("You do " + str(playerturn[1]) + " damage.") 
                         self.turndesc.append(f"You do {playerturn[1]} damage towards {self.enemy.name}.")
-                        self.enemy.health -= playerturn[1]
+                        self.enemy.health -= playerdamage
                         self.turn+=1
 
                     if playerturn[0] == "magic":
+                        playerdamage = playerturn[1]
                         pushtext("You feel the power from deep within you intensify.")
                         self.player.magiclevel+=1
+                        if playerturn[2] == 0:
+                            playerdamage = 0
+                            pushtext("Your attack misses!")
+                        if playerturn[2] == 10:
+                            pushtext("You deal a critical strike!")
                         pushtext("You do " + str(playerturn[1]) + " magic damage.")
                         self.turndesc.append(f"You do {playerturn[1]} magic damage towards {self.enemy.name}.") 
-                        self.enemy.health -= playerturn[1]
+                        self.enemy.health -= playerdamage
                         pushtext(f"Your magic level has increased by 1. Your magic level is now {self.player.magiclevel}.")
                         self.turn+=1
                 return

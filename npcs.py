@@ -37,7 +37,7 @@ dialogue = ["Hey there buddy.", "I saw you fall asleep over there an hour or two
 Lily1 = NPC("Lily", 
 greeting = None,
 examine = "Lily turns away to avoid your awkward attempt to analyze her.", 
-dialogue= ((f"Hey {player.name}!","Did you know you can examine anything just by thinking to yourself \"examine ____\"", "Try examining that boulder over there!", "But first you'll have to \"look around\" to see it!"))
+dialogue= ((f"Hey {player.name}!","Did you know you can examine anything or anyone just by thinking to yourself \"examine ____\"", "Try examining that boulder over there!", "But first you'll have to \"look around\" to see it!"))
 )
 
 Lily2 = NPC("Lily", 
@@ -66,7 +66,7 @@ action="teleport"
 )
 
 worker3 = NPC("Unconscious worker",
-examine = ("You lean in closer to take a look", "He seems to be alright, he's still breathing." ), 
+examine = ("You lean in closer to take a look.", "He seems to be alright, he's still breathing." ), 
 greeting = None,
 dialogue =("...", "@The man doesn't look like he's intersted in talking right now.")
 )
@@ -169,7 +169,7 @@ f"Oh - I remember you! You're {player.name}!",
 action="teleport"
 )
 
-Hunter = NPC("Hunter", 
+Hunter = NPC("Coyote hunter", 
 greeting = None,
 examine = "He looks busy hunting coyotes. You should go talk to him.", 
 dialogue = ["What do I plan to do with the coyote bones you ask?", "...", 
@@ -181,10 +181,19 @@ questcompleted = ["Thank you much. As promised here is the key I promised.",
 "Heh, I don't really know what it goes to though."]
 )
 
+boy = NPC("Young lad",
+greeting = None,
+examine = "He doesn't look lost, but he doesn't seem like he's up to much.",
+dialogue = ["Hi!", "My dad brought me here to help him hunt some coyotes, but I decided to look around to see what cool stuff I could find.",
+"I haven't really found anything cool though. My dad won't let me go too far, he says its dangerous to be by yourself over here.",
+"He won't stop talking about how death is permanent and how I should be careful if anything tries to attack me.",
+"Pretty dark stuff, but apparently Galawyn plains is where a lot adventurer's journeys come to an end.",
+"Good thing I brought plenty of food to keep me in good health!"])
+
 tempend = NPC("Jeff",
 examine = ("This guy seems " ), 
 greeting = None,
-dialogue =(f"hi {player.name}! Unfortunately, this is pretty much the end of the game for right now.", 
+dialogue =(f"Hi {player.name}! Unfortunately, this is pretty much the end of the game for right now.", 
 "Ahead are the gates to Galawyn, maybe one day you'll be able to go in! But for now it's locked in this game demo.", 
 "I've left some goodies on the ground for you to mess around with!",
 "Thank you so much for playing!!!", "No really", "Thank you :)")

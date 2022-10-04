@@ -150,7 +150,7 @@ class Room:
 			
 		if playerinput == "north" or playerinput == "east" or playerinput == "south" or playerinput == "west":
 			if self.getroomfordirection(playerinput) == None:
-					pushtext(f"The path {playerinput} leads you nowhere. You decide to head back.", speed = 0.03)
+					pushtext(f"The path {playerinput} leads you nowhere. You decide to head back.", speed = 0.02)
 					return
 			changerooms(player, self, self.getroomfordirection(playerinput))
 

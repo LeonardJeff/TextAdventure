@@ -268,7 +268,7 @@ class Player:
                         page = list(enumerate(templist[:],1))
                         for item in page:
                             print(f"[{str(item[0])}] {str(item[1])}")   #print every available consumable item
-                        print("(Sorry! Using items from this menu doesn't work at the moment!)")
+                        print("(Sorry! Using items from this specific menu doesn't work at the moment!)")
                         playerinput = input()
                         #print("Sorry! Using items from the inventory doesn't work at the moment! Atleast now you know what items you have :)")
                         #print("Here's why if you're curious: The inventory was first implemented (correctly) while programming combat mechanics.")
@@ -290,7 +290,7 @@ class Player:
             7 : 1,
             8 : 1,
             9: 1.1,
-            10: 1.75
+            10: 1.5
             }
         
         if self.speed >= enemyspeed:
@@ -302,22 +302,22 @@ class Player:
         
         attacktype = "physical"
         
-        return attacktype, int(max(basedamage - enemydefense, 1) * scaler), roll 
+        return attacktype, (max((int(basedamage * scaler) - enemydefense), 1)), roll 
     
     def calcmagic(self, enemydefense, enemyspeed):
         
         diceroll ={
             0 : 0, # missed attack
-            1 : .7,
-            2 : .75, 
+            1 : .5,
+            2 : .7, 
             3 :.8, 
             4 : .9,
             5 : .9,
             6 : 1,
             7 : 1,
-            8 : 1,
-            9: 1.1,
-            10: 1.75
+            8 : 1.1,
+            9: 1.3,
+            10: 1.4
             }
         
         if self.speed >= enemyspeed:
@@ -328,7 +328,7 @@ class Player:
         scaler = diceroll.get(roll)
         attacktype = "magic"
         
-        return  attacktype, int(max(self.magiclevel - enemydefense, 1) * scaler), roll
+        return  attacktype, (max((int(self.magiclevel * scaler) - enemydefense), 1)), roll
 
     def getAttackRating(self):
         total = self.attack
