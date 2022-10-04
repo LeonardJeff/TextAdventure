@@ -1,5 +1,5 @@
 import os
-import Monster
+import monster
 from equippable import Armor
 from player import Player
 from utils import getLowerInput
